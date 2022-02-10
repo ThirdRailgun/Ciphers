@@ -34,7 +34,7 @@ class test_cipher_caesar(unittest.TestCase):
 
 class test_cipher_vigenere(unittest.TestCase):
     def test_encrypt1(self):
-        assert cipher.cipher_vigenere_encrypt("The quick brown fox jumps over the lazy dog.", "key") == "Dlc aygmo zbsux jmh nswtq yzcb xfo pyjc byk."
+        assert cipher.cipher_vigenere_encrypt("The quick brown fox jumps over the lazy dog.", "password") == "Ihw iqwtn qrgoj tfa yueho cmhg tzw hoqb soy."
 
 if __name__ == '__main__':
     unittest.main()
