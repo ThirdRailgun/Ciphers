@@ -1,3 +1,6 @@
+import re
+import string
+
 def cipher_caesar_encrypt(plaintext: str, key: int):
     ciphertext = []
 
@@ -17,21 +20,39 @@ def cipher_caesar_encrypt(plaintext: str, key: int):
     
     return "".join(ciphertext)
 
-def cipher_caesar_decrypt(ciphertext: str):
-    return [cipher_caesar_encrypt(ciphertext, key) for key in range(1, 27)]
-            
     #return "".join([(chr(ord(letter) + (int(key) % 26))) for letter in str(plaintext)])
     #original attempt at list comprehension but it got too complex for its gracefulness.
 
-# #perhaps flesh this cipher out first.
-# def cipher_a1z26_encrypt(plaintext: str):
-#     ciphertext = []
-#     for letter in plaintext:
-#         if ord(letter.lower()) not in range(97,123):
-#             ciphertext.append(letter)
-#             continue
-#         ciphertext.append(str(ord(letter.lower())-96))
-#     return "".join(ciphertext)
+def cipher_caesar_decrypt(ciphertext: str):
+    return [cipher_caesar_encrypt(ciphertext, key) for key in range(1, 27)]
+
+def a1z26_encrypt(plaintext: str):
+    plaintext = plaintext.upper() #A1Z26 does not distinguish between upper and lower cases.
+    ciphertext = []
+
+    #https://stackoverflow.com/questions/367155/splitting-a-string-into-words-and-punctuation
+    for word in re.findall(r"[\w']+|[.,!?;]", plaintext):
+        ciphertext_word = []
+
+        for letter in word:
+            if letter.isalpha() == False:
+                ciphertext_word.append(letter)
+                continue
+
+            ciphertext_word.append(str(ord(letter) - 64))
+        
+        ciphertext.append("-".join(ciphertext_word))
+
+    #side effect of pretending that punctuation is its own word is that it gets joined with spaces as well.
+    ciphertext = " ".join(ciphertext)
+    for punctuation in string.punctuation:
+        ciphertext = ciphertext.replace(" " + punctuation, punctuation)
+
+    return ciphertext
+
+        #ciphertext.append(" ".join("-".join(ciphertext_word))) #there is a dash between each letter but not each word to distinguish 26, 2, 6
+
+    #return #"".join(ciphertext)
 
 # #current draft of the vigenere cipher. there's still something wrong with this?
 # def cipher_vigenere_encrypt(plaintext: str, key: str):
