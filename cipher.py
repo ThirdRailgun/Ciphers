@@ -16,6 +16,9 @@ def cipher_caesar_encrypt(plaintext: str, key: int):
             ciphertext.append(chr(ciphered_letter_ascii))
     
     return "".join(ciphertext)
+
+def cipher_caesar_decrypt(ciphertext: str):
+    return [cipher_caesar_encrypt(ciphertext, key) for key in range(1, 27)]
             
     #return "".join([(chr(ord(letter) + (int(key) % 26))) for letter in str(plaintext)])
     #original attempt at list comprehension but it got too complex for its gracefulness.
@@ -43,7 +46,6 @@ def cipher_caesar_encrypt(plaintext: str, key: int):
 #     return ciphertext    
 
 def main():
-    print(cipher_vigenere_encrypt("The quick brown fox jumps over the lazy dog.", "password"))
     pass
 
 
