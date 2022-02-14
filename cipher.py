@@ -1,4 +1,4 @@
-def cipher_ceasar_encrypt(plaintext: str, key: int):
+def cipher_caesar_encrypt(plaintext: str, key: int):
     ciphertext = []
 
     for letter in plaintext:
