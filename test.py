@@ -2,41 +2,41 @@ import unittest
 import cipher
 import string
 
-class test_cipher_caesar(unittest.TestCase):
+class test_caesar(unittest.TestCase):
 
     def test_encrypt1(self):
-        assert cipher.cipher_caesar_encrypt("A", "1") == "B"
+        assert cipher.caesar_encrypt("A", "1") == "B"
     
     def test_encrypt2(self):
-        assert cipher.cipher_caesar_encrypt("a", "1") == "b"
+        assert cipher.caesar_encrypt("a", "1") == "b"
 
     def test_encrypt3(self):
-        assert cipher.cipher_caesar_encrypt("A", "26") == "A"
+        assert cipher.caesar_encrypt("A", "26") == "A"
 
     def test_encrypt4(self):
-        assert cipher.cipher_caesar_encrypt("a", "26") == "a"
+        assert cipher.caesar_encrypt("a", "26") == "a"
 
     def test_encrypt5(self):
-        assert cipher.cipher_caesar_encrypt("A", "3056") == "O"
+        assert cipher.caesar_encrypt("A", "3056") == "O"
 
     def test_encrypt6(self):
-        assert cipher.cipher_caesar_encrypt("a", "-6") == "u"
+        assert cipher.caesar_encrypt("a", "-6") == "u"
 
     def test_error(self):
         with self.assertRaises(ValueError):
-            cipher.cipher_caesar_encrypt("A", "A") == "A"
+            cipher.caesar_encrypt("A", "A") == "A"
 
     def test_punctuation1(self):
-        assert cipher.cipher_caesar_encrypt(string.punctuation, "1") == string.punctuation
+        assert cipher.caesar_encrypt(string.punctuation, "1") == string.punctuation
 
     def test_punctuation2(self):
-        assert cipher.cipher_caesar_encrypt(string.punctuation, "46") == string.punctuation
+        assert cipher.caesar_encrypt(string.punctuation, "46") == string.punctuation
     
     def test_real(self):
-        assert cipher.cipher_caesar_encrypt("The quick brown fox jumps over the lazy dog.", "23") == "Qeb nrfzh yoltk clu grjmp lsbo qeb ixwv ald."
+        assert cipher.caesar_encrypt("The quick brown fox jumps over the lazy dog.", "23") == "Qeb nrfzh yoltk clu grjmp lsbo qeb ixwv ald."
 
     def test_decrypt(self):
-        assert cipher.cipher_caesar_decrypt("Qeb nrfzh yoltk clu grjmp lsbo qeb ixwv ald.") == [
+        assert cipher.caesar_decrypt("Qeb nrfzh yoltk clu grjmp lsbo qeb ixwv ald.") == [
             "Rfc osgai zpmul dmv hsknq mtcp rfc jyxw bme.",
             "Sgd pthbj aqnvm enw itlor nudq sgd kzyx cnf.",
             "The quick brown fox jumps over the lazy dog.",
@@ -65,9 +65,9 @@ class test_cipher_caesar(unittest.TestCase):
             "Qeb nrfzh yoltk clu grjmp lsbo qeb ixwv ald."
         ]
 
-# class test_cipher_vigenere(unittest.TestCase):
+# class test_vigenere(unittest.TestCase):
 #     def test_encrypt1(self):
-#         assert cipher.cipher_vigenere_encrypt("The quick brown fox jumps over the lazy dog.", "password") == "Ihw iqwtn qrgoj tfa yueho cmhg tzw hoqb soy."
+#         assert cipher.vigenere_encrypt("The quick brown fox jumps over the lazy dog.", "password") == "Ihw iqwtn qrgoj tfa yueho cmhg tzw hoqb soy."
 
 if __name__ == '__main__':
     unittest.main()
